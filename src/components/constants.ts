@@ -1,12 +1,13 @@
 import {CoupleOfCelebritiesType} from "./types.ts";
 
 export const START_TEXT = {
-    TITLE: 'Игра "Смотри не перепутай"',
-    TITLE_RULES: 'Как играть',
-    RULES_TEXT: 'Игра очень проста. После выбора пары знаменитостей они начнут хаотично двигаться, и твоя задача найти и нажать на портрет одного. ',
+    TITLE: '"ПОХОЖ, НО НЕ ТОТ"',
+    TITLE_RULES: 'Выбери персонажа',
+    RULES_TEXT: 'Это игра на внимательность, где перед тобой будут мелькать два известных человека, похожих друг на друга.',
+    RULES_TEXT_TASK: 'Твоя задача — найти одно уникальное лицо среди множества одинаковых и нажать на него, прежде чем закончится время!',
     BUTTON_SELECT_CELEBRITY: 'ВЫБРАТЬ ПЕРСОНАЖА',
     USER_SELECT_TEXT: 'Вы выбрали',
-    BUTTON_SELECT_LEVEL: 'Выберите уровень',
+    TITLE_SELECT_LEVEL: 'Выберите уровень',
     BUTTON_START_TEXT: 'Начинаем игру'
 } as const;
 
@@ -27,11 +28,18 @@ export const celebrities: CoupleOfCelebritiesType[] = [
         id: 2,
     },
     {
-        nameOfTargetCelebrity: 'Джеффри Дин Морган',
+        nameOfTargetCelebrity: 'Джеффри Морган',
         pathOfTargetCelebrity: 'jeffrey-dean-morgan',
         nameOfSomeAnotherCelebrity: 'Хавьер Бардем',
         pathOfSomeAnotherCelebrity: 'javier-bardem',
         id: 3,
+    },
+    {
+        nameOfTargetCelebrity: 'Кэри Маллиган',
+        pathOfTargetCelebrity: 'carey-mulligan',
+        nameOfSomeAnotherCelebrity: 'Мишель Уильямс',
+        pathOfSomeAnotherCelebrity: 'michelle-williams',
+        id: 4,
     },
 ]
 // {

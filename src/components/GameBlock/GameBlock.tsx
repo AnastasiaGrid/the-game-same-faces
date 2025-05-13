@@ -7,7 +7,7 @@ import {getRandomElemOfArray} from "../../utils/utils.ts";
 
 export type GameBlockProps = {
     selectedCoupleOfCelebrities: CoupleOfCelebritiesType;
-    gameLevel: number;
+    gameLevel: string;
     handleCelebrityCLick?: (targetCelebrity: string) => void;
 }
 
@@ -22,18 +22,23 @@ export const GameBlock = ({selectedCoupleOfCelebrities, gameLevel, handleCelebri
 
     useEffect(() => {
         switch (gameLevel) {
-            case 1:
+            case 'lightest-level':
                 setAnimationDuration('10')
                 setAmountCelebrities(10)
                 setWidthOfImage(150)
                 break
-            case 2:
+            case 'light-level':
+                setAnimationDuration('9')
+                setAmountCelebrities(20)
+                setWidthOfImage(130)
+                break
+            case 'medium-level':
                 setAnimationDuration('8')
                 setAmountCelebrities(30)
                 setWidthOfImage(120)
                 break
-            case 3:
-                setAnimationDuration('6')
+            case 'hard-level':
+                setAnimationDuration('7')
                 setAmountCelebrities(40)
                 setWidthOfImage(100)
 

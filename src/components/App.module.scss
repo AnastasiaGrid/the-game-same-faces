@@ -1,3 +1,4 @@
+@use "../styles/fonts";
 
 .modal {
   position: absolute;
@@ -12,23 +13,80 @@
   align-items: center;
 }
 
+@property --rotate {
+  syntax: "<angle>";
+  initial-value: 132deg;
+  inherits: false;
+}
+
+
 .game_area {
   position: relative;
-  width: 710px;
-  height: 720px;
+  width: 800px;
+  height: 650px;
   margin: auto;
-  margin-block-start: 60px;
-  //background-color: darkgrey;
+  margin-block-start: 120px;
+  //background-color: rgba(232, 240, 243, 0.55);
+  background-color: rgba(151, 181, 211, 0.23);
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 10px 20px;
+  padding: 10px 40px;
+  border-radius: 50px;
+  box-shadow: 0px 0px 49px 8px rgba(34, 60, 80, 0.25);
+  //color: #4f1021;
+  color: black;
 }
 
-.image {
-  width: 100px;
+.game_area::before {
+  content: "";
+  width: 106%;
+  height: 107%;
+  border-radius: 50px;
+  background-image: linear-gradient(
+                  var(--rotate), #97b5d3, #c2ccd1, #d0d0e2);
+  position: absolute;
+  z-index: -1;
+  top: -3%;
+  left: -3%;
+  animation: gradient 3s linear infinite;
 }
+
+@keyframes gradient {
+  0% {
+    --rotate: 0deg;
+  }
+  100% {
+    --rotate: 360deg;
+  }
+}
+
 
 .title {
-  font-family: 'Press Start 2P', cursive;
+  font-family: 'LXGW WenKai TC', sans-serif;
+  font-weight: 700;
+  font-size: 40px;
+  margin: 0;
+  padding-block: 50px 20px;
+}
+
+.descriptions_block {
+  text-align: center;
+}
+
+.description {
+  //padding-inline: 0px;
+  margin: 0;
+  font-weight: 400;
+  font-size: 20px;
+  padding-block-end: 10px;
+}
+
+//.description:first-child {
+//}
+
+.subtitle {
+  font-size: 22px;
+  font-weight: 700;
+  padding-block-end: 5px;
 }

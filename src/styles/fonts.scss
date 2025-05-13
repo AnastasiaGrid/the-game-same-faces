@@ -1,8 +1,21 @@
-//@font-face {
-//  font-family: "Comfortaa", sans-serif;
-//  src: url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Unbounded:wght@300&display=swap');
-//  font-weight: normal;
-//}
+@font-face {
+  font-family: 'LXGW WenKai TC';
+  src: url('../assets/fonts/LXGWWenKaiTC-Light.woff2') format('woff2');
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: 'LXGW WenKai TC';
+  src: url('../assets/fonts/LXGWWenKaiTC-Regular.woff2') format('woff2');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'LXGW WenKai TC';
+  src: url('../assets/fonts/LXGWWenKaiTC-Bold.woff2') format('woff2');
+  font-weight: 700;
+}
+
 
 @font-face {
   font-family: "Unbounded";

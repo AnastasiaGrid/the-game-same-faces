@@ -1,24 +1,40 @@
-import {CHOOSE_PERSON_TEXT} from "./constants.ts";
 import {ChoosePersonBlockProps} from "./types.ts";
 import styles from './ChooseCelebritiesBlock.module.scss'
 import {CoupleOfCelebritiesType} from "../types.ts";
 import {CelebrityItem} from "../CelebrityItem/CelebrityItem.tsx";
+import clsx from "clsx";
 
-const {TITLE} = CHOOSE_PERSON_TEXT
+// const {TITLE} = CHOOSE_PERSON_TEXT
 
-export const ChooseCelebritiesBlock = ({handleSelectCelebrities, celebrities}: ChoosePersonBlockProps) => {
+export const ChooseCelebritiesBlock = ({
+                                           handleSelectCelebrities,
+                                           celebrities,
+                                           selectedCoupleOfCelebrities
+                                       }: ChoosePersonBlockProps) => {
     return (
         <>
-            <h2>{TITLE}</h2>
             <ul className={styles.list}>
                 {celebrities.map((celeb: CoupleOfCelebritiesType) => {
-                    return <li className={styles.list} key={celeb.id}
+                    return <li className={styles.list_item} key={celeb.id}
                                onClick={() => handleSelectCelebrities(celeb)}>
-                        <h3>{celeb.nameOfTargetCelebrity} и {celeb.nameOfSomeAnotherCelebrity}</h3>
-                        <CelebrityItem pathName={celeb.pathOfTargetCelebrity} altText={celeb.nameOfTargetCelebrity}
-                                       className={styles.image}/>
-                        <CelebrityItem pathName={celeb.pathOfSomeAnotherCelebrity}
-                                       altText={celeb.nameOfSomeAnotherCelebrity} className={styles.image}/>
+                        <img src='src/assets/images/rays.png' alt={'ddd'}
+                             className={clsx(styles.select_celebrity,
+                                 {
+                                     [styles.active]: celeb === selectedCoupleOfCelebrities
+                                 })}/>
+                        <div className={styles.list_block}>
+                            <div className={clsx(styles.img_front)}>
+                                <CelebrityItem pathName={celeb.pathOfTargetCelebrity}
+                                               altText={celeb.nameOfTargetCelebrity}
+                                               className={styles.image}/>
+                                <h3 className={styles.name_celebrity}>{celeb.nameOfTargetCelebrity}</h3>
+                            </div>
+                            <div className={styles.img_back}>
+                                <CelebrityItem pathName={celeb.pathOfSomeAnotherCelebrity}
+                                               altText={celeb.nameOfSomeAnotherCelebrity} className={styles.image}/>
+                                <h3 className={styles.name_celebrity}>{celeb.nameOfSomeAnotherCelebrity}</h3>
+                            </div>
+                        </div>
                     </li>
                 })}
             </ul>

@@ -1,8 +1,20 @@
 @import './styles/fonts.scss';
 
 :root {
-    font-family: 'Unbounded', sans-serif;
-    background-color: #8bb3c6;
+    font-family: 'LXGW WenKai TC', sans-serif;
+    background: linear-gradient(0deg, #97b5d3, #c2ccd1, #d0d0e2);
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+    padding: 0;
+    margin: 0;
 }
 
 
