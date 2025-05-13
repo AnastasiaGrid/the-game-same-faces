@@ -7,8 +7,8 @@ export const START_TEXT = {
     RULES_TEXT_TASK: 'Твоя задача — найти одно уникальное лицо среди множества одинаковых и нажать на него, прежде чем закончится время!',
     BUTTON_SELECT_CELEBRITY: 'ВЫБРАТЬ ПЕРСОНАЖА',
     USER_SELECT_TEXT: 'Вы выбрали',
-    TITLE_SELECT_LEVEL: 'Выберите уровень',
-    BUTTON_START_TEXT: 'Начинаем игру'
+    TITLE_SELECT_LEVEL: 'Выбери уровень',
+    BUTTON_START_TEXT: 'НАЧИНАЕМ ИГРУ'
 } as const;
 
 

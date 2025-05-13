@@ -1,40 +1,41 @@
 import styles from './App.module.scss'
-import {Button, MenuItem, Modal, Select} from "@mui/material";
+import {Button, Modal} from "@mui/material";
 import {celebrities, GameOverModalText, START_TEXT} from "./constants.ts";
 import {useState} from "react";
 import {CoupleOfCelebritiesType} from "./types.ts";
 import {ChooseCelebritiesBlock} from "./ChooseCelebritiesBlock/ChooseCelebritiesBlock.tsx";
-import {CelebrityItem} from "./CelebrityItem/CelebrityItem.tsx";
 import {GameBlock} from "./GameBlock/GameBlock.tsx";
+import {GameLevelRadioRating} from "./GameLevelRadioRating/GameLevelRadioRating.tsx";
 
 
 const {
     TITLE,
-    BUTTON_SELECT_CELEBRITY,
     TITLE_RULES,
     RULES_TEXT,
-    USER_SELECT_TEXT,
-    BUTTON_SELECT_LEVEL,
-    BUTTON_START_TEXT
+    RULES_TEXT_TASK,
+    BUTTON_START_TEXT,
+    TITLE_SELECT_LEVEL
 } = START_TEXT
 
 function App() {
-    const [selectCelebritiesOpen, setSelectCelebritiesOpen] = useState<boolean>(false)
+    // const [selectCelebritiesOpen, setSelectCelebritiesOpen] = useState<boolean>(false)
     const [selectedCoupleOfCelebrities, setCoupleOfCelebrities] = useState<CoupleOfCelebritiesType | null>(null)
-    const [gameLevel, setGameLevel] = useState<number>(1)
+    const [gameLevel, setGameLevel] = useState<string | null>(null)
     const [isGameStart, setGameStart] = useState(false)
     const [isGameOverModalOpen, setGameOverModalOpen] = useState(false)
+
     const handleSelectCelebrities = (celeb: CoupleOfCelebritiesType) => {
         setCoupleOfCelebrities(celeb)
-        setSelectCelebritiesOpen(false)
+        // setSelectCelebritiesOpen(false)
     }
 
     const handleStartGame = () => {
         setGameStart(true)
+        setGameLevel('lightest-level')
         if (selectedCoupleOfCelebrities === null) setCoupleOfCelebrities(celebrities[0])
     }
 
-    const handleCelebrityCLick = (targetCelebrity: string) => {
+    const handleCelebrityClick = (targetCelebrity: string) => {
         if (targetCelebrity === selectedCoupleOfCelebrities?.nameOfTargetCelebrity) {
             setGameStart(false)
             setGameOverModalOpen(true)
@@ -43,49 +44,45 @@ function App() {
 
     const handleGameOverClose = () => {
         setGameOverModalOpen(false)
-        setGameLevel(1)
+        setGameLevel('lightest-level')
         setGameStart(false)
         setCoupleOfCelebrities(null)
     }
 
+    const handleSelectLevelClick = (id: string) => {
+        setGameLevel(id)
+    }
     return (
         <>
-            <div className={styles.game_area}>
-                {isGameStart ? <GameBlock selectedCoupleOfCelebrities={selectedCoupleOfCelebrities || celebrities[0]}
-                                          gameLevel={gameLevel} handleCelebrityCLick={handleCelebrityCLick}/> : (
-                    <>
-                        <h1 className={styles.title}>{TITLE}</h1>
-                        {selectCelebritiesOpen ?
-                            <ChooseCelebritiesBlock handleSelectCelebrities={handleSelectCelebrities}
-                                                    celebrities={celebrities}/> : (<>
-                                <h2>{TITLE_RULES}</h2>
-                                <p>{RULES_TEXT}</p>
-                                <Button onClick={() => {
-                                    setSelectCelebritiesOpen(true)
-                                }}>{BUTTON_SELECT_CELEBRITY}</Button>
-                            </>)}
-                        {selectedCoupleOfCelebrities && !selectCelebritiesOpen && (
-                            <>
-                                <h2>{USER_SELECT_TEXT}</h2>
-                                <CelebrityItem pathName={selectedCoupleOfCelebrities.pathOfTargetCelebrity}
-                                               altText={selectedCoupleOfCelebrities.nameOfTargetCelebrity}
-                                               className={styles.image}/>
-                                <CelebrityItem pathName={selectedCoupleOfCelebrities.pathOfSomeAnotherCelebrity}
-                                               altText={selectedCoupleOfCelebrities.nameOfSomeAnotherCelebrity}
-                                               className={styles.image}/>
-                                <Select variant={"filled"} label='gameLevel' id='gamelevel' value={gameLevel}
-                                        onChange={(e) => setGameLevel(Number(e?.target?.value))}>
-                                    <MenuItem value={1}>1</MenuItem>
-                                    <MenuItem value={2}>2</MenuItem>
-                                    <MenuItem value={3}>3</MenuItem>
-                                </Select>
-                            </>
-                        )}
-                        <Button onClick={handleStartGame}>{BUTTON_START_TEXT}</Button>
-                    </>
-                )
-                }
-            </div>
+            {isGameStart && <GameBlock selectedCoupleOfCelebrities={selectedCoupleOfCelebrities || celebrities[0]}
+                                       gameLevel={gameLevel} handleCelebrityCLick={handleCelebrityClick}/>}
+
+            {!isGameStart && <div className={styles.game_area}>
+                <>
+                    <h1 className={styles.title}>{TITLE}</h1>
+                    <div className={styles.descriptions_block}>
+                        <p className={styles.description}>{RULES_TEXT}</p>
+                        <p className={styles.description}>{RULES_TEXT_TASK}</p>
+                    </div>
+                    <h2 className={styles.subtitle}>{TITLE_RULES}</h2>
+                    <ChooseCelebritiesBlock handleSelectCelebrities={handleSelectCelebrities}
+                                            celebrities={celebrities}
+                                            selectedCoupleOfCelebrities={selectedCoupleOfCelebrities}
+                    />
+                    <h2 className={styles.subtitle}>{TITLE_SELECT_LEVEL}</h2>
+                    <GameLevelRadioRating onSelectLevelClick={handleSelectLevelClick} gameLevel={gameLevel}/>
+                    {/*<Button variant='contained' onClick={handleStartGame}*/}
+                    {/*        className={styles.button_start}>{BUTTON_START_TEXT}</Button>*/}
+                    <button type='button' onClick={handleStartGame}
+                            className={styles.button_start}>
+                            <span className={styles.button_start_span}>
+                                <p className={styles.button_text}>
+                                    {BUTTON_START_TEXT}
+                                </p>
+                            </span>
+                    </button>
+                </>
+            </div>}
             {isGameOverModalOpen &&
                 <Modal open={isGameOverModalOpen} onClose={handleGameOverClose}>
                     <div className={styles.modal}>
