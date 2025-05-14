@@ -4,13 +4,14 @@ import {CoupleOfCelebritiesType} from "../types.ts";
 import {CelebrityItem} from "../CelebrityItem/CelebrityItem.tsx";
 import {useEffect, useState} from "react";
 import {getRandomElemOfArray} from "../../utils/utils.ts";
-import {GameTablo} from "../GameTablo/GameTablo.tsx";
+import {GameTablo} from "./GameTablo/GameTablo.tsx";
 
 export type GameBlockProps = {
     selectedCoupleOfCelebrities: CoupleOfCelebritiesType;
     gameLevel: string | null;
     handleCelebrityCLick?: (targetCelebrity: string) => void;
     onGameOver: (isOver: boolean) => void;
+    onStopGame: () => void;
 
 }
 
@@ -18,7 +19,7 @@ export const GameBlock = ({
                               selectedCoupleOfCelebrities,
                               gameLevel,
                               handleCelebrityCLick,
-                              onGameOver
+                              onGameOver, onStopGame
                           }: GameBlockProps) => {
     const [animationDuration, setAnimationDuration] = useState('0');
     const [numberCelebrities, setAmountCelebrities] = useState(10);
@@ -36,27 +37,26 @@ export const GameBlock = ({
                 setWidthOfImage(150)
                 break
             case 'light-level':
-                setAnimationDuration('7')
+                setAnimationDuration('9')
                 setAmountCelebrities(30)
                 setWidthOfImage(130)
                 break
             case 'medium-level':
-                setAnimationDuration('6')
+                setAnimationDuration('8')
                 setAmountCelebrities(40)
                 setWidthOfImage(120)
                 break
             case 'hard-level':
-                setAnimationDuration('5')
+                setAnimationDuration('7')
                 setAmountCelebrities(60)
                 setWidthOfImage(100)
 
         }
     }, [gameLevel]);
-    console.log(gameLevel)
 
     return (
         <div className={styles.game_area}>
-            <GameTablo onGameOver={onGameOver}/>
+            <GameTablo onGameOver={onGameOver} onStopGame={onStopGame}/>
             <div className={styles.game_zone}>
                 <CelebrityItem onClick={handleCelebrityCLick}
                                pathName={selectedCoupleOfCelebrities.pathOfTargetCelebrity}

@@ -1,20 +1,21 @@
 import styles from './App.module.scss'
-import {Button, Modal} from "@mui/material";
-import {celebrities, GameOverModalText, START_TEXT} from "./constants.ts";
+import {Modal} from "@mui/material";
+import {celebrities, START_TEXT} from "./constants.ts";
 import {useState} from "react";
 import {CoupleOfCelebritiesType} from "./types.ts";
 import {ChooseCelebritiesBlock} from "./ChooseCelebritiesBlock/ChooseCelebritiesBlock.tsx";
 import {GameBlock} from "./GameBlock/GameBlock.tsx";
 import {GameLevelRadioRating} from "./GameLevelRadioRating/GameLevelRadioRating.tsx";
-import {StartGameButton} from "./StartGameButton/StartGameButton.tsx";
+import {GameButton} from "./GameButton/GameButton.tsx";
+import {ModalEndGame} from "./ModalEndGame/ModalEndGame.tsx";
 
 
 const {
     TITLE,
     TITLE_RULES,
     RULES_TEXT,
-    RULES_TEXT_TASK,
-    TITLE_SELECT_LEVEL
+    BUTTON_START_TEXT,
+    TITLE_SELECT_LEVEL,
 } = START_TEXT
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
     const [gameLevel, setGameLevel] = useState<string | null>(null)
     const [isGameStart, setGameStart] = useState(false)
     const [isGameOverModalOpen, setGameOverModalOpen] = useState(false)
+    const [isWinGame, setWinGame] = useState(false)
 
     const handleSelectCelebrities = (celeb: CoupleOfCelebritiesType) => {
         setCoupleOfCelebrities(celeb)
@@ -42,6 +44,7 @@ function App() {
             setGameStart(false)
             setGameOverModalOpen(true)
         }
+        setWinGame(true)
     }
 
     const handleGameOverClose = () => {
@@ -49,6 +52,7 @@ function App() {
         setGameLevel('lightest-level')
         setGameStart(false)
         setCoupleOfCelebrities(null)
+        setWinGame(false)
     }
 
     const handleSelectLevelClick = (id: string) => {
@@ -56,23 +60,33 @@ function App() {
     }
 
     const handleGameOverByTimer = () => {
-        setCoupleOfCelebrities(null)
-        setGameLevel(null)
         setGameOverModalOpen(true)
         setGameStart(false)
+        setWinGame(false)
+    }
+
+    const handleReStartGame = () => {
+        setGameOverModalOpen(false)
+        setGameStart(true)
+        setWinGame(false)
+    }
+
+    const handeStopGame = () => {
+        setGameOverModalOpen(true)
+        setGameStart(false)
+        setWinGame(false)
     }
     return (
         <>
             {isGameStart && <GameBlock selectedCoupleOfCelebrities={selectedCoupleOfCelebrities || celebrities[0]}
                                        gameLevel={gameLevel} handleCelebrityCLick={handleCelebrityClick}
-                                       onGameOver={handleGameOverByTimer}/>}
+                                       onGameOver={handleGameOverByTimer} onStopGame={handeStopGame}/>}
 
             {!isGameStart && <div className={styles.open_window}>
                 <>
                     <h1 className={styles.title}>{TITLE}</h1>
                     <div className={styles.descriptions_block}>
                         <p className={styles.description}>{RULES_TEXT}</p>
-                        <p className={styles.description}>{RULES_TEXT_TASK}</p>
                     </div>
                     <h2 className={styles.subtitle}>{TITLE_RULES}</h2>
                     <ChooseCelebritiesBlock handleSelectCelebrities={handleSelectCelebrities}
@@ -81,20 +95,13 @@ function App() {
                     />
                     <h2 className={styles.subtitle}>{TITLE_SELECT_LEVEL}</h2>
                     <GameLevelRadioRating onSelectLevelClick={handleSelectLevelClick} gameLevel={gameLevel}/>
-                    <StartGameButton handleStartGame={handleStartGame}/>
+                    <GameButton handleStartGame={handleStartGame} buttonText={BUTTON_START_TEXT}/>
                 </>
             </div>}
             {isGameOverModalOpen &&
                 <Modal open={isGameOverModalOpen} onClose={handleGameOverClose}>
-                    <div className={styles.modal}>
-                        {selectedCoupleOfCelebrities ? <>
-                                <h2>{GameOverModalText.TITLE}</h2>
-                                <Button onClick={handleGameOverClose}>{GameOverModalText.BUTTON_RESTART_TEXT}</Button>
-                            </>
-                            : <>
-                                <h2>УПС</h2>
-                            </>}
-                    </div>
+                    <ModalEndGame handleGameOverClose={handleGameOverClose} handleReStartGame={handleReStartGame}
+                                  isWinGame={isWinGame}/>
                 </Modal>}
         </>
     )

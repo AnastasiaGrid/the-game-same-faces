@@ -1,25 +1,5 @@
 @use "../styles/fonts";
 
-.modal {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: white;
-  width: 500px;
-  height: 500px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-@property --rotate {
-  syntax: "<angle>";
-  initial-value: 132deg;
-  inherits: false;
-}
-
-
 .open_window {
   position: relative;
   width: 800px;
@@ -34,9 +14,16 @@
   gap: 5px;
   padding: 50px 40px;
   border-radius: 50px;
-  box-shadow: 0px 0px 49px 8px rgba(34, 60, 80, 0.25);
+  box-shadow: 0 0 49px 8px rgba(34, 60, 80, 0.25);
   color: black;
 }
+
+@property --rotate {
+  syntax: "<angle>";
+  initial-value: 132deg;
+  inherits: false;
+}
+
 
 .open_window::before {
   content: "";
@@ -66,7 +53,6 @@
   font-weight: 700;
   font-size: 40px;
   margin: 0;
-  //padding-block-end: 20px;
 }
 
 .descriptions_block {
@@ -74,19 +60,14 @@
 }
 
 .description {
-  //padding-inline: 0px;
   margin: 0;
   font-weight: 400;
   font-size: 20px;
-  //padding-block-end: 10px;
-}
-
-.description:first-child {
-  padding-block-end: 10px;
+  white-space: pre-wrap;
 }
 
 .subtitle {
   font-size: 22px;
   font-weight: 700;
-  //padding-block-end: 5px;
 }
+
