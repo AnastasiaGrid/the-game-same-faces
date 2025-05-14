@@ -41,6 +41,7 @@ export const celebrities: CoupleOfCelebritiesType[] = [
         pathOfSomeAnotherCelebrity: 'michelle-williams',
         id: 4,
     },
+
 ]
 // {
 //     nameOfTargetCelebrity: 'Марго Робби',
