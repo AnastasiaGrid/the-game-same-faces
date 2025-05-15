@@ -17,7 +17,7 @@ export const ChooseCelebritiesBlock = ({
                 {celebrities.map((celeb: CoupleOfCelebritiesType) => {
                     return <li className={styles.list_item} key={celeb.id}
                                onClick={() => handleSelectCelebrities(celeb)}>
-                        <img src='src/assets/images/rays.png' alt={'ddd'}
+                        <img src='../../../public/images/rays.png' alt={'ddd'}
                              className={clsx(styles.select_celebrity,
                                  {
                                      [styles.active]: celeb === selectedCoupleOfCelebrities
