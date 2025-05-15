@@ -14,7 +14,9 @@ React, TypeScript, Vite, SCSS, CSS Houdini
 ## Поиграть можно здесь
 https://anastasiagrid.github.io/the-game-same-faces/
 
-https://github.com/user-attachments/assets/4f39a79a-dd03-4dec-8a43-0251fbb73498
+
+https://github.com/user-attachments/assets/f8effd90-42a5-450f-9057-9c800ad4c7f2
+
 
 
 Не для публичного использования
