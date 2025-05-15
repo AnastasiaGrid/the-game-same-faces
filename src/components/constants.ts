@@ -18,30 +18,30 @@ export const START_TEXT = {
 export const celebrities: CoupleOfCelebritiesType[] = [
     {
         nameOfTargetCelebrity: 'Эд Ширан',
-        pathOfTargetCelebrity: 'ed-sheeran',
+        pathOfTargetCelebrity: 'edSheeran',
         nameOfSomeAnotherCelebrity: 'Руперт Гринт',
-        pathOfSomeAnotherCelebrity: 'rupert-grint',
+        pathOfSomeAnotherCelebrity: 'rupertGrint',
         id: 1,
     },
     {
         nameOfTargetCelebrity: 'Кира Найтли',
-        pathOfTargetCelebrity: 'keira-knightley',
+        pathOfTargetCelebrity: 'keiraKnightley',
         nameOfSomeAnotherCelebrity: 'Натали Портман',
-        pathOfSomeAnotherCelebrity: 'natalie-portman',
+        pathOfSomeAnotherCelebrity: 'nataliePortman',
         id: 2,
     },
     {
         nameOfTargetCelebrity: 'Джеффри Морган',
-        pathOfTargetCelebrity: 'jeffrey-dean-morgan',
+        pathOfTargetCelebrity: 'jeffreyDeanMorgan',
         nameOfSomeAnotherCelebrity: 'Хавьер Бардем',
-        pathOfSomeAnotherCelebrity: 'javier-bardem',
+        pathOfSomeAnotherCelebrity: 'javierBardem',
         id: 3,
     },
     {
         nameOfTargetCelebrity: 'Кэри Маллиган',
-        pathOfTargetCelebrity: 'carey-mulligan',
+        pathOfTargetCelebrity: 'careyMulligan',
         nameOfSomeAnotherCelebrity: 'Мишель Уильямс',
-        pathOfSomeAnotherCelebrity: 'michelle-williams',
+        pathOfSomeAnotherCelebrity: 'michelleWilliams',
         id: 4,
     },
 

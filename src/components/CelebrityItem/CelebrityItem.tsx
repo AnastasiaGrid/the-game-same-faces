@@ -1,6 +1,15 @@
 import styles from './CelebrityItem.module.scss';
 import clsx from "clsx";
 import {getRandomElemOfArray} from "../../utils/utils.ts";
+import careyMulliganImg from '../../assets/images/carey-mulligan.png'
+import michelleWilliamsImg from '../../assets/images/michelle-williams.png'
+import javierBardemImg from '../../assets/images/javier-bardem.png'
+import jeffreyDeanMorganImg from '../../assets/images/jeffrey-dean-morgan.png'
+import nataliePortmanImg from '../../assets/images/natalie-portman.png'
+import keiraKnightleyImg from '../../assets/images/keira-knightley.png'
+import rupertGrintImg from '../../assets/images/rupert-grint.png'
+import edSheeranImg from '../../assets/images/ed-sheeran.png'
+
 
 type CelebrityItemProps = {
     pathName: string;
@@ -18,6 +27,18 @@ const getZIndex = () => {
     return Math.floor(Math.random() * 21)
 }
 
+const paths: Record<string, string> = {
+    careyMulligan: careyMulliganImg,
+    michelleWilliams: michelleWilliamsImg,
+    javierBardem: javierBardemImg,
+    jeffreyDeanMorgan: jeffreyDeanMorganImg,
+    nataliePortman: nataliePortmanImg,
+    keiraKnightley: keiraKnightleyImg,
+    rupertGrint: rupertGrintImg,
+    edSheeran: edSheeranImg,
+
+}
+
 export const CelebrityItem = ({
                                   pathName,
                                   onClick,
@@ -26,7 +47,8 @@ export const CelebrityItem = ({
                                   className,
                                   animationDuration, width
                               }: CelebrityItemProps) => {
-    const path = `src/assets/images/${pathName}.png`;
+    // const spath = `src/assets/images/${pathName}.png`;
+    const path: string = paths[pathName];
     const offsetPathStyle = `path('${offsetPath}')`
 
     return (

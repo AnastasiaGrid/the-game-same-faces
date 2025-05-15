@@ -3,8 +3,7 @@ import styles from './ChooseCelebritiesBlock.module.scss'
 import {CoupleOfCelebritiesType} from "../types.ts";
 import {CelebrityItem} from "../CelebrityItem/CelebrityItem.tsx";
 import clsx from "clsx";
-
-// const {TITLE} = CHOOSE_PERSON_TEXT
+import raysImg from '../../assets/images/rays.png?inline'
 
 export const ChooseCelebritiesBlock = ({
                                            handleSelectCelebrities,
@@ -17,7 +16,7 @@ export const ChooseCelebritiesBlock = ({
                 {celebrities.map((celeb: CoupleOfCelebritiesType) => {
                     return <li className={styles.list_item} key={celeb.id}
                                onClick={() => handleSelectCelebrities(celeb)}>
-                        <img src='../../../public/images/rays.png' alt={'ddd'}
+                        <img src={raysImg} alt={'ddd'}
                              className={clsx(styles.select_celebrity,
                                  {
                                      [styles.active]: celeb === selectedCoupleOfCelebrities
