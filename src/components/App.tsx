@@ -19,7 +19,6 @@ const {
 } = START_TEXT
 
 function App() {
-    // const [selectCelebritiesOpen, setSelectCelebritiesOpen] = useState<boolean>(false)
     const [selectedCoupleOfCelebrities, setCoupleOfCelebrities] = useState<CoupleOfCelebritiesType | null>(null)
     const [gameLevel, setGameLevel] = useState<string | null>(null)
     const [isGameStart, setGameStart] = useState(false)
@@ -28,7 +27,6 @@ function App() {
 
     const handleSelectCelebrities = (celeb: CoupleOfCelebritiesType) => {
         setCoupleOfCelebrities(celeb)
-        // setSelectCelebritiesOpen(false)
     }
 
     const handleStartGame = () => {

@@ -1,28 +1,23 @@
 import styles from "./ModalEndGame.module.scss";
-import {GameOverModalText} from "../constants.ts";
 import {GameButton} from "../GameButton/GameButton.tsx";
+import {GAME_OVER} from "./constants.ts";
+import {ModalEndGameProps} from "./types.ts";
 
-interface ModalEndGameProps {
-    isWinGame: boolean;
-    handleGameOverClose: () => void;
-    handleReStartGame: () => void;
-}
-
-export const START_TEXT = {
-    BUTTON_CHANGE_CELEBRITY: 'ПОМЕНЯТЬ УСЛОВИЯ',
-    BUTTON_REPEAT: 'НАЧАТЬ ЗАНОВО',
-    TITLE_GAME_OVER: 'УПС!',
-    GAME_OVER_TEXT: 'На этот раз не получилось, но ты точно справишься в следующий раз! \n\nХочешь попробовать снова?'
-} as const;
-
-const {TITLE_GAME_OVER, GAME_OVER_TEXT, BUTTON_CHANGE_CELEBRITY, BUTTON_REPEAT} = START_TEXT
+const {
+    TITLE_GAME_OVER,
+    GAME_OVER_TEXT,
+    BUTTON_CHANGE_CELEBRITY,
+    BUTTON_REPEAT,
+    TITLE_WIN_GAME,
+    CONGRATULATIONS
+} = GAME_OVER
 
 export const ModalEndGame = ({isWinGame, handleGameOverClose, handleReStartGame}: ModalEndGameProps) => {
     return (
         <div className={styles.modal}>
             {isWinGame ? <>
-                    <h2 className={styles.title}>{GameOverModalText.TITLE}</h2>
-                    <p className={styles.description}>{GameOverModalText.CONGRATULATIONS}</p>
+                    <h2 className={styles.title}>{TITLE_WIN_GAME}</h2>
+                    <p className={styles.description}>{CONGRATULATIONS}</p>
                 </>
                 :
                 <>

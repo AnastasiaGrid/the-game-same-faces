@@ -1,19 +1,12 @@
 import styles from "./GameBlock.module.scss";
-import {offsetPathForRender} from "./constants.ts";
-import {CoupleOfCelebritiesType} from "../types.ts";
+import {initialLevelParameters, LEVEL_PARAMETERS, offsetPathForRender} from "./constants.ts";
 import {CelebrityItem} from "../CelebrityItem/CelebrityItem.tsx";
 import {useEffect, useState} from "react";
 import {getRandomElemOfArray} from "../../utils/utils.ts";
 import {GameTablo} from "./GameTablo/GameTablo.tsx";
+import {GameBlockProps, levelParameters} from "./types.ts";
 
-export type GameBlockProps = {
-    selectedCoupleOfCelebrities: CoupleOfCelebritiesType;
-    gameLevel: string | null;
-    handleCelebrityCLick?: (targetCelebrity: string) => void;
-    onGameOver: (isOver: boolean) => void;
-    onStopGame: () => void;
-
-}
+const {LIGHTEST_LEVEL, LIGHT_LEVEL, MEDIUM_LEVEL, HARD_LEVEL} = LEVEL_PARAMETERS
 
 export const GameBlock = ({
                               selectedCoupleOfCelebrities,
@@ -21,36 +14,25 @@ export const GameBlock = ({
                               handleCelebrityCLick,
                               onGameOver, onStopGame
                           }: GameBlockProps) => {
-    const [animationDuration, setAnimationDuration] = useState('0');
-    const [numberCelebrities, setAmountCelebrities] = useState(10);
-    const [widthOfImage, setWidthOfImage] = useState(100);
+    const [levelParameters, setLevelParameters] = useState<levelParameters>(initialLevelParameters);
 
     const offsetPathForTargetCelebrity = getRandomElemOfArray(offsetPathForRender)
     const newOffsetPathForRender = offsetPathForRender.filter((item) => item !== offsetPathForTargetCelebrity)
 
-
     useEffect(() => {
         switch (gameLevel) {
             case 'lightest-level':
-                setAnimationDuration('9')
-                setAmountCelebrities(20)
-                setWidthOfImage(150)
+                setLevelParameters(LIGHTEST_LEVEL)
                 break
             case 'light-level':
-                setAnimationDuration('9')
-                setAmountCelebrities(30)
-                setWidthOfImage(130)
+                setLevelParameters(LIGHT_LEVEL)
                 break
             case 'medium-level':
-                setAnimationDuration('8')
-                setAmountCelebrities(40)
-                setWidthOfImage(120)
+                setLevelParameters(MEDIUM_LEVEL)
                 break
             case 'hard-level':
-                setAnimationDuration('7')
-                setAmountCelebrities(60)
-                setWidthOfImage(100)
-
+                setLevelParameters(HARD_LEVEL)
+                break
         }
     }, [gameLevel]);
 
@@ -62,14 +44,16 @@ export const GameBlock = ({
                                pathName={selectedCoupleOfCelebrities.pathOfTargetCelebrity}
                                altText={selectedCoupleOfCelebrities.nameOfTargetCelebrity}
                                offsetPath={offsetPathForTargetCelebrity}
-                               className={styles.image} animationDuration={animationDuration} width={widthOfImage}/>
-                {Array.from({length: numberCelebrities}).map((_, index) =>
+                               className={styles.image} animationDuration={levelParameters.DURATION_ANIMATION}
+                               width={levelParameters.WIDTH_OF_IMAGES}/>
+                {Array.from({length: levelParameters.AMOUNT_CELEBRITIES}).map((_, index) =>
                     <CelebrityItem onClick={handleCelebrityCLick}
                                    pathName={selectedCoupleOfCelebrities.pathOfSomeAnotherCelebrity}
                                    altText={selectedCoupleOfCelebrities.nameOfSomeAnotherCelebrity}
                                    offsetPath={newOffsetPathForRender[index]}
-                                   key={index} className={styles.image} animationDuration={animationDuration}
-                                   width={widthOfImage}/>
+                                   key={index} className={styles.image}
+                                   animationDuration={levelParameters.DURATION_ANIMATION}
+                                   width={levelParameters.WIDTH_OF_IMAGES}/>
                 )}
             </div>
         </div>

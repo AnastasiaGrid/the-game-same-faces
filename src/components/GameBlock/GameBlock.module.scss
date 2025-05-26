@@ -1,13 +1,4 @@
-//.game_zone {
-//  display: flex;
-//  justify-content: space-between;
-//  flex-direction: row;
-//}
-
 .game_area {
-  //width: 500px;
-  //height: 100vh;
-  //margin: auto;
   display: grid;
   grid-template-columns: 740px 1fr;
 }

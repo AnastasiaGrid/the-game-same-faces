@@ -3,17 +3,8 @@ import Circle from '../../../assets/icons/circle.svg?react'
 import {useEffect, useState} from "react";
 import clsx from "clsx";
 import {GameButton} from "../../GameButton/GameButton.tsx";
-
-
-export interface GameTabloProps {
-    onGameOver: (isOver: boolean) => void;
-    onStopGame: () => void;
-}
-
-export const GAME_TABLO_TEXT = {
-    BUTTON_STOP_GAME: 'СТОП ИГРА',
-    BUTTON_MORE_TIME: 'ЕЩЕ ВРЕМЯ'
-}
+import {GameTabloProps} from "./types.ts";
+import {GAME_TABLO_TEXT} from "./constants.ts";
 
 export const GameTablo = ({onGameOver, onStopGame}: GameTabloProps) => {
     const [timer, setTimer] = useState<number>(10)
@@ -29,7 +20,8 @@ export const GameTablo = ({onGameOver, onStopGame}: GameTabloProps) => {
         }
         return () => clearInterval(timerInterval)
 
-    }, [timer]);
+    }, [onGameOver, timer]);
+
     useEffect(() => {
         setTimerAnimationStart(true)
     }, []);
@@ -48,10 +40,6 @@ export const GameTablo = ({onGameOver, onStopGame}: GameTabloProps) => {
                 <p className={styles.timer_number}>{timer}</p>
             </div>
             <div className={styles.buttons}>
-                {/*<button className={clsx(styles.button, styles.button_stop)}*/}
-                {/*        onClick={onStopGame}>{GAME_TABLO_TEXT.BUTTON_STOP_GAME}</button>*/}
-                {/*<button className={clsx(styles.button, styles.button_more)}*/}
-                {/*        onClick={handle}>{GAME_TABLO_TEXT.BUTTON_MORE_TIME}</button>*/}
                 <GameButton buttonText={GAME_TABLO_TEXT.BUTTON_STOP_GAME} handleStartGame={onStopGame}
                             classNameFront={styles.button_front} classNameBack={styles.button_back}/>
                 <GameButton buttonText={GAME_TABLO_TEXT.BUTTON_MORE_TIME} handleStartGame={handle}

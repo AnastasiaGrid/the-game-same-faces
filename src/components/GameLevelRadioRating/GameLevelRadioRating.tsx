@@ -5,12 +5,7 @@ import BadSmileIcon from '../../assets/icons/mood_bad_24dp_1F1F1F_FILL0_wght400_
 import SkullSmileIcon from '../../assets/icons/skull_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg?react'
 import styles from './GameLevelRadioRating.module.scss'
 import clsx from "clsx";
-
-
-interface GameLevelRadioRatingProps {
-    onSelectLevelClick: (id: string) => void;
-    gameLevel: string | null;
-}
+import {GameLevelRadioRatingProps} from "./types.ts";
 
 export const GameLevelRadioRating = ({onSelectLevelClick, gameLevel}: GameLevelRadioRatingProps) => {
     return <div className={styles.icons}>
